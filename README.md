@@ -20,7 +20,7 @@ It helps kids practice **addition, subtraction, multiplication, and division** w
 [https://beo.motconvit.com/](https://beo.motconvit.com/)
 
 ## Screenshots
-![Math Game - Screenshot 1](https://user-images.githubusercontent.com/25878302/134760073-3b3b3b7b-3b3b-4b3b-8b3b-3b3b3b3b3b3b.png)
+![Math Game - Screenshot 1](https://github.com/duythanh90/math-genius/blob/main/demo.png?raw=true)
 
 ## 📦 Installation
 
