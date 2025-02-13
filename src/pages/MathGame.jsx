@@ -3,6 +3,7 @@ import GameTitle from "../components/GameTitle";
 import { MainLayout } from "../components/MainLayout";
 import NewQuestionButton from "../components/NewQuestionButton";
 import { useExam } from "../hooks/useExam";
+import { motion, AnimatePresence } from "framer-motion";
 
 const MathGame = ({ mathType }) => {
   const {
@@ -40,16 +41,34 @@ const MathGame = ({ mathType }) => {
         ⏳ Time Left: {timeLeft}s
       </p>
 
-      <p className="font-extrabold text-blue-600 mb-6">
-        <div className="text-4xl">What is</div>
-        <div className="text-6xl my-5">{expression}</div>
-      </p>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={expression} // Ensure animation triggers when expression changes
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+        >
+          <p className="font-extrabold text-blue-600 mb-6">
+            <div className="text-4xl">What is</div>
+            <div className="text-6xl my-5">{expression}</div>
+          </p>
+        </motion.div>
+      </AnimatePresence>
 
       {options.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 mb-6">
-          {options.map((option, index) => (
-            <AnswerButton key={index} value={option} onClick={checkAnswer} />
-          ))}
+          <AnimatePresence mode="wait">
+            {" "}
+            {/* Ensures smooth transition */}
+            {options.map((option) => (
+              <AnswerButton
+                key={`${expression}-${option}`}
+                value={option}
+                onClick={checkAnswer}
+              />
+            ))}
+          </AnimatePresence>
         </div>
       ) : (
         <p className="text-gray-500">Loading options...</p>

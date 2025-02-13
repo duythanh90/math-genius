@@ -90,7 +90,7 @@ export const useExam = ({
                     answer: "Time Out",
                     correct: "⏳ Time Out!",
                 },
-                ...prev.slice(0, 4),
+                ...prev.slice(0, 1000),
             ]);
         }
     }, [timeLeft, isAnswered]);
@@ -238,7 +238,7 @@ export const useExam = ({
                 answer: selectedAnswer,
                 correct: result,
             },
-            ...prev.slice(0, 4),
+            ...prev.slice(0, 1000),
         ]);
     };
 
