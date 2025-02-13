@@ -1,5 +1,6 @@
 import AnswerModal from "./AnswerModal";
 import HistoryPanel from "./HistoryPanel";
+import { Yeah } from "./Yeah";
 
 export const MainLayout = ({
   children,
@@ -10,9 +11,11 @@ export const MainLayout = ({
     showModal,
     num1,
     num2,
+    showConfetti
   },
 }) => {
-  const { showModal, num1, num2 } = config;
+  const { showModal, num1, num2, showConfetti } = config;
+
 
   const getCorrectAnswer = () => {
     switch (type) {
@@ -29,23 +32,27 @@ export const MainLayout = ({
 
   return (
     <>
-      <div className="grid grid-cols-3 w-full bg-gray-50">
-        <div className="col-span-2">
-          <div className="flex justify-center items-center pt-20 flex-col">
-            <img src="/images/mock.jpg" alt="Game" className="h-[250px] mb-4" />
-            <div className="justify-center bg-white shadow-lg rounded-lg p-10 w-full max-w-lg text-center">
-              {children}
+      <Yeah open={showConfetti} />
+      <div className="grid md:grid-cols-3 xl:grid-cols-4 w-full bg-gray-50">
+        <div className="md:col-span-2 xl:col-span-3">
+          <div className="flex justify-center items-center flex-col">
+            <img src="/images/mock.jpg" alt="Game" className="w-2/5 xl:w-1/5 my-4" />
+            <div className="p-4 w-full">
+              <div className="justify-center bg-white shadow-sm rounded-lg p-10 w-full text-center border r">
+                {children}
+              </div>
             </div>
           </div>
         </div>
-        <HistoryPanel history={history} />
+        <div className="hidden md:block">
+          <HistoryPanel history={history} />
+        </div>
         <AnswerModal
           isOpen={showModal}
           correctAnswer={getCorrectAnswer()}
           onClose={onClose}
         />
       </div>
-      );
     </>
   );
 };

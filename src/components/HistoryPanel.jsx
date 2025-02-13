@@ -1,6 +1,6 @@
 const HistoryPanel = ({ history }) => {
   return (
-    <div className="p-5 top-0 right-0 h-screen bg-gray-100 shadow-lg border-l overflow-y-auto">
+    <div className="p-5 top-0 right-0 sticky h-screen bg-gray-100 border-l overflow-y-auto">
       <h2 className="text-2xl font-bold mb-4">📜 Answer History</h2>
       <ul className="space-y-3">
         {history.length === 0 ? (
