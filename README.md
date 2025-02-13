@@ -16,14 +16,18 @@ It helps kids practice **addition, subtraction, multiplication, and division** w
 
 ---
 
+## Demo website
+[https://beo.motconvit.com/](https://beo.motconvit.com/)
+
 ## 📦 Installation
 
 ### **1️⃣ Clone the Repository**
 ```sh
 git clone https://github.com/your-username/math-game.git
 cd math-game
+```
 
-2️⃣ Install Dependencies
+### **2️⃣ Install Dependencies
 ```sh
 npm install
 ```
