@@ -9,10 +9,10 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Menu Button */}
+      {/* Mobile Menu Button - increased z-index */}
       <button 
         onClick={toggleMenu}
-        className="fixed top-4 left-4 md:hidden z-50 p-2 rounded-md bg-white shadow-lg"
+        className="fixed top-5 left-4 md:hidden z-50 p-2 rounded-md bg-white shadow-lg"
       >
         <svg 
           className="w-6 h-6" 
@@ -31,7 +31,7 @@ const Sidebar = () => {
       {/* Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden pt-16"
           onClick={toggleMenu}
         />
       )}
@@ -40,11 +40,11 @@ const Sidebar = () => {
       <div className={`
         fixed md:static inset-y-0 left-0 w-64 bg-white shadow-lg 
         transform transition-transform duration-300 ease-in-out z-40
-        md:transform-none
+        md:transform-none pt-20 md:pt-0
         ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
-        <div className="p-4 space-y-4">
-          <h2 className="text-xl font-bold mb-6">Math Games</h2>
+        <div className="p-4">
+          <h2 className="text-xl font-bold mb-4">Math Genius</h2>
           <nav className="space-y-2">
             <Link 
               to="/" 
