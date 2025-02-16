@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const getRandomNumber = (min = 1, max = 10) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -13,14 +13,6 @@ const timeoutSound = new Audio("/sounds/timeout.mp3");
 const tickingBomb = new Audio("/sounds/ticking-bomb.mp3");
 const streakSound = new Audio("/sounds/tada.mp3");
 
-const operators = {
-    ADD: (num1, num2) => { return num1 + num2 },
-    SUBTRACT: (num1, num2) => { return num1 - num2 },
-    MULTIPLY: (num1, num2) => { return num1 * num2 },
-    DIVIDE: (num1, num2) => { return num1 / num2 }
-
-}
-
 const titleOptions = {
     ADD: "Addition game",
     SUBTRACT: "Subtraction game",
@@ -34,6 +26,7 @@ const expressionOperator = {
     MULTIPLY: "x",
     DIVIDE: "÷"
 }
+
 export const useExam = ({
     mathType
 }) => {
@@ -48,24 +41,40 @@ export const useExam = ({
     const [streak, setStreak] = useState(0);
     const [showConfetti, setShowConfetti] = useState(false);
 
+    const getExpression = useCallback(() => {
+        return `${num1} ${expressionOperator[mathType]} ${num2}`;
+    }, [num1, num2, mathType]);
+
     useEffect(() => {
         generateOptions();
     }, [mathType, num1, num2]);
+
+    useEffect(() => {
+        return () => {
+            // Cleanup audio on unmount
+            [correctSound, wrongSound, timeoutSound, tickingBomb, streakSound].forEach(sound => {
+                sound.pause();
+                sound.currentTime = 0;
+            });
+        };
+    }, []);
 
     function playSound(sound) {
         if (!sound.paused) {
             sound.pause();
             sound.currentTime = 0;
         }
-        sound.play();
+        sound.play().catch(error => {
+            console.warn('Audio playback failed:', error);
+        });
     }
 
     useEffect(() => {
-        if (streak && streak % 5 == 0) {
+        if (streak && streak % 5 === 0) {
             setShowConfetti(true);
-            playSound(streakSound)
+            playSound(streakSound);
         }
-    }, [streak])
+    }, [streak]);
 
     useEffect(() => {
         if (timeLeft > 0 && !isAnswered) {
@@ -86,14 +95,14 @@ export const useExam = ({
 
             setHistory((prev) => [
                 {
-                    question: `${num1} ${mathType} ${num2}`,
+                    question: getExpression(),
                     answer: "Time Out",
                     correct: "⏳ Time Out!",
                 },
                 ...prev.slice(0, 1000),
             ]);
         }
-    }, [timeLeft, isAnswered]);
+    }, [timeLeft, isAnswered, num1, num2, mathType, getExpression]);
 
     const calculate = ({ type, num1, num2 }) => {
         switch (type) {
@@ -194,7 +203,7 @@ export const useExam = ({
     const checkAnswer = (selectedAnswer) => {
         if (isAnswered) return;
 
-        const correctAnswer = calulate({
+        const correctAnswer = calculate({
             type: mathType,
             num1,
             num2
@@ -241,19 +250,6 @@ export const useExam = ({
             ...prev.slice(0, 1000),
         ]);
     };
-
-    const calulate = ({
-        type,
-        num1,
-        num2
-    }) => {
-        const func = operators[type];
-        return func(num1, num2);
-    }
-
-    const getExpression = () => {
-        return `${num1} ${expressionOperator[mathType]} ${num2}`
-    }
 
     return {
         num1,

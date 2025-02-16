@@ -4,6 +4,7 @@ import { MainLayout } from "../components/MainLayout";
 import NewQuestionButton from "../components/NewQuestionButton";
 import { useExam } from "../hooks/useExam";
 import { motion, AnimatePresence } from "framer-motion";
+import PropTypes from 'prop-types';
 
 const MathGame = ({ mathType }) => {
   const {
@@ -49,10 +50,10 @@ const MathGame = ({ mathType }) => {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <p className="font-extrabold text-blue-600 mb-6">
+          <div className="font-extrabold text-blue-600 mb-6">
             <div className="text-4xl">What is</div>
             <div className="text-6xl my-5">{expression}</div>
-          </p>
+          </div>
         </motion.div>
       </AnimatePresence>
 
@@ -79,6 +80,10 @@ const MathGame = ({ mathType }) => {
       <NewQuestionButton onClick={generateQuestion} />
     </MainLayout>
   );
+};
+
+MathGame.propTypes = {
+  mathType: PropTypes.string.isRequired
 };
 
 export default MathGame;

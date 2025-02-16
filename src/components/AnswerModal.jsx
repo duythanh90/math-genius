@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const AnswerModal = ({ isOpen, correctAnswer, onClose }) => {
   if (!isOpen) return null; // Don't render if not open
 
@@ -18,6 +20,12 @@ const AnswerModal = ({ isOpen, correctAnswer, onClose }) => {
       </div>
     </div>
   );
+};
+
+AnswerModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  correctAnswer: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default AnswerModal;

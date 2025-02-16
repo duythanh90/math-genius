@@ -1,7 +1,7 @@
 import { FaDivide, FaMinus, FaPlus, FaTimes } from "react-icons/fa"; // Import icons
 import { Link } from "react-router-dom";
 import { ResponsiveButton } from "../layout/ResponsiveButton";
-
+import PropTypes from 'prop-types';
 const Sidebar = () => {
   return (
     <div className="relative">
@@ -26,5 +26,18 @@ const Sidebar = () => {
     </div>
   );
 };
+
+Sidebar.propTypes = {
+  history: PropTypes.array.isRequired,
+  onClose: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(['addition', 'subtraction', 'multiplication', 'division']).isRequired,
+  config: PropTypes.shape({ 
+    showModal: PropTypes.bool,
+    num1: PropTypes.number,
+    num2: PropTypes.number,
+    showConfetti: PropTypes.bool
+  })
+};
+
 
 export default Sidebar;

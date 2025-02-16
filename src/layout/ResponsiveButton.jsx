@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export const ResponsiveButton = () => {
     return (
         <>
@@ -8,4 +10,8 @@ export const ResponsiveButton = () => {
             </div>
         </>
     )
+}
+
+ResponsiveButton.propTypes = {
+    children: PropTypes.node.isRequired
 }
