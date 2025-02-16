@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import PropTypes from 'prop-types';
 
 const AnswerButton = ({ value, onClick }) => {
   return (
@@ -15,6 +16,11 @@ const AnswerButton = ({ value, onClick }) => {
       {value}
     </motion.button>
   );
+};
+
+AnswerButton.propTypes = {
+  value: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default AnswerButton;

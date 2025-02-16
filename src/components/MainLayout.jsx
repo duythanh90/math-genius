@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import AnswerModal from "./AnswerModal";
 import HistoryPanel from "./HistoryPanel";
 import { Yeah } from "./Yeah";
@@ -8,10 +9,10 @@ export const MainLayout = ({
   onClose,
   type,
   config = {
-    showModal,
-    num1,
-    num2,
-    showConfetti
+    showModal: false,
+    num1: 0,
+    num2: 0,
+    showConfetti: false
   },
 }) => {
   const { showModal, num1, num2, showConfetti } = config;
@@ -55,4 +56,17 @@ export const MainLayout = ({
       </div>
     </>
   );
+};
+
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+  history: PropTypes.array.isRequired,
+  onClose: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(['addition', 'subtraction', 'multiplication', 'division']).isRequired,
+  config: PropTypes.shape({
+    showModal: PropTypes.bool,
+    num1: PropTypes.number,
+    num2: PropTypes.number,
+    showConfetti: PropTypes.bool
+  })
 };

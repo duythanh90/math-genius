@@ -1,4 +1,5 @@
 import Sidebar from "../components/Sidebar"
+import PropTypes from 'prop-types'
 
 export const MainLayout = (props) => {
     const { children } = props
@@ -12,4 +13,8 @@ export const MainLayout = (props) => {
             </div>
         </>
     )
+}
+
+MainLayout.propTypes = {
+    children: PropTypes.node.isRequired
 }

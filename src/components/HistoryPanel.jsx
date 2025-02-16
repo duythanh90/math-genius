@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { motion, AnimatePresence } from "framer-motion";
 
 const listVariants = {
@@ -54,6 +55,14 @@ const HistoryPanel = ({ history }) => {
       </ul>
     </div>
   );
+};
+
+HistoryPanel.propTypes = {
+  history: PropTypes.arrayOf(PropTypes.shape({
+    question: PropTypes.string.isRequired,
+    answer: PropTypes.number.isRequired,
+    correct: PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default HistoryPanel;

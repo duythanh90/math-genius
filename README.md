@@ -79,7 +79,29 @@ yarn build
 docker build -t math-game .
 
 # Run container
-docker run -p 3000:3000 math-game
+docker run -p 80:80 math-game
+```
+
+Access the application at http://localhost
+
+### Using Docker Compose
+
+For production:
+```bash
+# Start the application
+docker compose up -d
+
+# Stop the application
+docker compose down
+```
+
+For development with hot-reloading:
+```bash
+# Start development server
+docker compose --profile dev up math-game-dev
+
+# Stop development server
+docker compose --profile dev down
 ```
 
 ## 🤝 Contributing

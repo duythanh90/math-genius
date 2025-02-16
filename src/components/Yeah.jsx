@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
+import PropTypes from 'prop-types';
 
 export const Yeah = ({ open }) => {
     const { width, height } = useWindowSize();
@@ -16,4 +17,8 @@ export const Yeah = ({ open }) => {
 
     return <>{showConfetti && <Confetti
         gravity={0.7} wind={0.1} width={width} height={height} />}</>;
+};
+
+Yeah.propTypes = {
+    open: PropTypes.bool.isRequired
 };

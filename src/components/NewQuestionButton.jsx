@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const NewQuestionButton = ({ onClick }) => {
   return (
     <button
@@ -7,6 +9,10 @@ const NewQuestionButton = ({ onClick }) => {
       New Question 🔄
     </button>
   );
+};
+
+NewQuestionButton.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 export default NewQuestionButton;
