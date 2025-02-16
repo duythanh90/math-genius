@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FaDivide, FaMinus, FaPlus, FaTimes } from "react-icons/fa";
+import { analytics } from '../firebase/config';
+import { logEvent } from 'firebase/analytics';
 
 const Home = () => {
   const games = [
@@ -33,6 +35,12 @@ const Home = () => {
     }
   ];
 
+  const handleGameSelect = (gameTitle) => {
+    logEvent(analytics, 'game_selected', {
+      game_name: gameTitle
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 mt-20">
       <div className="text-center mb-12">
@@ -45,6 +53,7 @@ const Home = () => {
           <Link 
             key={game.path}
             to={game.path}
+            onClick={() => handleGameSelect(game.title)}
             className={`${game.color} p-6 rounded-lg shadow-md transition-transform hover:scale-105`}
           >
             <div className="flex flex-col items-center text-center">
