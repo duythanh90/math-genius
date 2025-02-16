@@ -34,6 +34,7 @@ This game helps kids practice **addition, subtraction, multiplication, and divis
 - **Frontend Framework**: React
 - **Build Tool**: Vite
 - **Styling**: TailwindCSS
+- **Analytics**: Firebase
 - **Containerization**: Docker
 
 ## 📦 Installation & Setup
@@ -42,6 +43,7 @@ This game helps kids practice **addition, subtraction, multiplication, and divis
 - Node.js (v14 or higher)
 - npm or yarn
 - Docker (optional)
+- Firebase project (for analytics)
 
 ### Local Development
 
@@ -58,7 +60,19 @@ npm install
 yarn install
 ```
 
-3. **Start Development Server**
+3. **Set up Environment Variables**
+Create a `.env` file in the root directory with your Firebase configuration:
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+```
+
+4. **Start Development Server**
 ```bash
 npm run dev
 # or
@@ -127,6 +141,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🌟 Support
 
 If you find this project helpful, please consider giving it a ⭐️ on GitHub!
+
+## 🔧 Configuration
+
+### Firebase Setup
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com)
+2. Enable Analytics in your Firebase project
+3. Copy your Firebase configuration to the `.env` file
+4. The app will automatically track game usage and user interactions
 
 ---
 
