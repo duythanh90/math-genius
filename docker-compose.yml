@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  math-game:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: math-game
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    # Enable these for development if needed
+    # volumes:
+    #   - ./src:/app/src
+    #   - ./public:/app/public
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Add development service for hot-reloading
+  math-game-dev:
+    build:
+      context: .
+      target: build
+    container_name: math-game-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev -- --host
+    profiles:
+      - dev 
