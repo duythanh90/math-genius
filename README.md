@@ -3,6 +3,10 @@
 A fun **educational math game** built with **React, Vite, and TailwindCSS**! 🎮  
 Perfect for children and students to practice their math skills through interactive challenges.
 
+## 🌐 Demo
+
+Try the live demo at: [http://beo.motconvit.com/](http://beo.motconvit.com/)
+
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-blue)](https://beo.motconvit.com/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
@@ -149,6 +153,12 @@ If you find this project helpful, please consider giving it a ⭐️ on GitHub!
 2. Enable Analytics in your Firebase project
 3. Copy your Firebase configuration to the `.env` file
 4. The app will automatically track game usage and user interactions
+
+### Production Deployment
+The game is currently deployed and running at:
+- Production URL: [http://beo.motconvit.com/](http://beo.motconvit.com/)
+- Features full analytics integration
+- Optimized for performance
 
 ---
 
